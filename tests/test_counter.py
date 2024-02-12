@@ -56,3 +56,9 @@ class CounterTest(TestCase):
         result = self.client.get('/counters/sheep')
         self.assertEqual(result.status_code, status.HTTP_200_OK)
         self.assertEqual(1, COUNTERS['sheep'])
+
+    def test_delete_counter(self):
+        """It should return successful if deleted counter"""
+        result = self.client.post('/counters/wolf')
+        result = self.client.delete('/counters/wolf')
+        self.assertEqual(result.status_code, status.HTTP_204_NO_CONTENT)
